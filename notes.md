@@ -20,12 +20,7 @@ export GDK_DPI_SCALE=0.5
 export QT_AUTO_SCREEN_SCALE_FACTOR=1 
 
 
-install pavucontrol  
+sudo apt install xdotool pavucontrol playerctl maim xclip imagemagick scrot
 use pactl to set default audio  
 open chrome with $mod+c  
-install playerctl  
-install maim  
-install picom
-sudo apt install xdotool  
-install xclip
 

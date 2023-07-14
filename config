@@ -294,3 +294,14 @@ bar {
 
 # sound toggle output devices
 bindsym $mod+Ctrl+s  exec ~/.config/i3/scripts/toggle_sink.sh
+
+# screenshot
+bindsym Print exec --no-startup-id maim ~/Pictures/$(date +'%Y-%m-%d-%H-%M-%S').png
+bindsym $mod+Print exec --no-startup-id maim -i $(xdotool getactivewindow) ~/Pictures/$(date +'%Y-%m-%d-%H-%M-%S').png
+bindsym Shift+Print exec --no-startup-id maim -s ~/Pictures/$(date +'%Y-%m-%d-%H-%M-%S').png
+
+bindsym Ctrl+Print exec --no-startup-id maim png | xclip -selection clipboard -t image/png
+bindsym Ctrl+$mod+Print exec --no-startup-id maim -i $(xdotool getactivewindow) | xclip -selection clipboard -t image/png
+bindsym Ctrl+Shift+Print exec --no-startup-id maim -s | xclip -selection clipboard -t image/png
+
+

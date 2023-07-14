@@ -216,7 +216,11 @@ for_window [class="Arandr"] floating enable
 set $mode_display Config monitor resolution - My first config (d) - My second config (t)
 
 mode "$mode_display" {
-    bindsym d exec --no-startup-id xrandr --output eDP --off --output HDMI-A-0 --mode 3840x2160 --pos 0x0 --rotate normal --output DisplayPort-0 --off --output DisplayPort-1 --off
+    # for two external displays on elitebook
+    bindsym d exec --no-startup-id xrandr --output eDP --off --output HDMI-A-0 --mode 3840x2160 --pos 0x704 --rotate normal --output DisplayPort-0 --off --output DisplayPort-1 --mode 3840x2160 --pos 3840x0 --rotate right --output DisplayPort-2 --off --output DisplayPort-3 --off --output DisplayPort-4 --off --output DisplayPort-5 --off --output DisplayPort-6 --off
+    # for t14, one external display
+    #bindsym d exec --no-startup-id xrandr --output eDP --off --output HDMI-A-0 --mode 3840x2160 --pos 0x0 --rotate normal --output DisplayPort-0 --off --output DisplayPort-1 --off
+    # for laptop display
     bindsym t exec --no-startup-id xrandr --output eDP --mode 1920x1080 --pos 0x0 --rotate normal --output HDMI-A-0 --off --output DisplayPort-0 --off --output DisplayPort-1 --off
 
     # back to normal: Enter or Escape

@@ -20,7 +20,7 @@ export GDK_DPI_SCALE=0.5
 export QT_AUTO_SCREEN_SCALE_FACTOR=1 
 
 
-sudo apt install xdotool pavucontrol playerctl maim xclip imagemagick scrot
+sudo apt install xdotool pavucontrol playerctl maim xclip imagemagick scrot feh blueman
 use pactl to set default audio  
 open chrome with $mod+c  
 

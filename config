@@ -217,7 +217,7 @@ set $mode_display Config monitor resolution - My first config (d) - My second co
 
 mode "$mode_display" {
     # for two external displays on elitebook
-    bindsym d exec --no-startup-id xrandr --output eDP --off --output HDMI-A-0 --mode 3840x2160 --pos 0x704 --rotate normal --output DisplayPort-0 --off --output DisplayPort-1 --mode 3840x2160 --pos 3840x0 --rotate right --output DisplayPort-2 --off --output DisplayPort-3 --off --output DisplayPort-4 --off --output DisplayPort-5 --off --output DisplayPort-6 --off
+    bindsym d exec --no-startup-id xrandr --output eDP --off --output HDMI-A-0 --mode 3840x2160 --pos 0x704 --rotate normal --output DisplayPort-0 --off --output DisplayPort-1 --mode 3840x2160 --pos 3840x0 --rotate left
     # for t14, one external display
     #bindsym d exec --no-startup-id xrandr --output eDP --off --output HDMI-A-0 --mode 3840x2160 --pos 0x0 --rotate normal --output DisplayPort-0 --off --output DisplayPort-1 --off
     # for laptop display
@@ -308,4 +308,7 @@ bindsym Ctrl+Print exec --no-startup-id maim png | xclip -selection clipboard -t
 bindsym Ctrl+$mod+Print exec --no-startup-id maim -i $(xdotool getactivewindow) | xclip -selection clipboard -t image/png
 bindsym Ctrl+Shift+Print exec --no-startup-id maim -s | xclip -selection clipboard -t image/png
 
-exec_always --no-startup-id dunst -config ~/.config/dunst/dunstrc
+exec_always --no-startup-id /usr/bin/feh --bg-fill /home/basan/Documents/mountain_road.jpg /home/basan/Documents/sascha-bosshard.jpg
+exec --no-startup-id blueman-applet &
+#exec --no-startup-id pasystray &
+

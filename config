@@ -213,16 +213,14 @@ bindsym $mod+BackSpace mode "$mode_system"
 for_window [class="Arandr"] floating enable
 
 
-set $mode_display Config monitor resolution - My first config (d) - My second config (t)
+set $mode_display Config monitor resolution - Laptop screen only (t) - Dell external monitor only (d) - Dell and AOC monitors (r)
 
 mode "$mode_display" {
     # for two external displays on elitebook
-    bindsym d exec --no-startup-id xrandr --output eDP --off --output HDMI-A-0 --mode 3840x2160 --pos 0x704 --rotate normal --output DisplayPort-0 --off --output DisplayPort-1 --mode 3840x2160 --pos 3840x0 --rotate left
-    # for t14, one external display
-    #bindsym d exec --no-startup-id xrandr --output eDP --off --output HDMI-A-0 --mode 3840x2160 --pos 0x0 --rotate normal --output DisplayPort-0 --off --output DisplayPort-1 --off
-    # for laptop display
     bindsym t exec --no-startup-id xrandr --output eDP --mode 1920x1080 --pos 0x0 --rotate normal --output HDMI-A-0 --off --output DisplayPort-0 --off --output DisplayPort-1 --off
-
+    bindsym w exec --no-startup-id xrandr --output eDP --off --output HDMI-A-0 --mode 3840x2160 --pos 0x704 --rotate normal --output DisplayPort-0 --off --output DisplayPort-1 --mode 3840x2160 --pos 3840x0 --rotate left
+    bindsym r exec --no-startup-id xrandr --output HDMI-0 --primary --mode 3840x2160 --pos 0x0 --rotate normal --output DP-0 --mode 3840x2160 --pos 3840x0 --rotate normal --output DP-1 --off --output DP-2 --off --output DP-3 --off --output DP-4 --off --output DP-5 --off
+    
     # back to normal: Enter or Escape
     bindsym Return mode "default"
     bindsym Escape mode "default"
@@ -280,7 +278,7 @@ set_from_resource $white2 color15 #ffffff
 bar {
     status_command i3status --config ~/.config/i3/i3status.conf
     # Disable all tray icons
-    tray_output HDMI-A-0
+    tray_output HDMI-0
     colors {
         background $black2
         statusline $white2
@@ -308,7 +306,9 @@ bindsym Ctrl+Print exec --no-startup-id maim png | xclip -selection clipboard -t
 bindsym Ctrl+$mod+Print exec --no-startup-id maim -i $(xdotool getactivewindow) | xclip -selection clipboard -t image/png
 bindsym Ctrl+Shift+Print exec --no-startup-id maim -s | xclip -selection clipboard -t image/png
 
-exec_always --no-startup-id /usr/bin/feh --bg-fill /home/basan/Documents/mountain_road.jpg /home/basan/Documents/sascha-bosshard.jpg
+exec_always --no-startup-id /usr/bin/feh --bg-fill /home/basan/Documents/forrest-cavale-qfmd9bu7IgA-unsplash.jpg /home/basan/Documents/forest-river-misty.jpg
 exec --no-startup-id blueman-applet &
 #exec --no-startup-id pasystray &
 
+
+exec --no-startup-id /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1

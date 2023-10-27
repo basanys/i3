@@ -46,6 +46,9 @@ bindsym XF86AudioPlay exec playerctl play-pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
+bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +10%
+bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 10%-
+
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
@@ -213,14 +216,19 @@ bindsym $mod+BackSpace mode "$mode_system"
 for_window [class="Arandr"] floating enable
 
 
-set $mode_display Config monitor resolution - Laptop screen only (t) - Dell external monitor only (d) - Dell and AOC monitors (r)
+set $mode_display Config monitor resolution - Elite only (e) - Dell only (d) - Elite+Dell+AOC (a) - Dell+AOC (r)
 
 mode "$mode_display" {
     # for two external displays on elitebook
-    bindsym t exec --no-startup-id xrandr --output eDP --mode 1920x1080 --pos 0x0 --rotate normal --output HDMI-A-0 --off --output DisplayPort-0 --off --output DisplayPort-1 --off
-    bindsym w exec --no-startup-id xrandr --output eDP --off --output HDMI-A-0 --mode 3840x2160 --pos 0x704 --rotate normal --output DisplayPort-0 --off --output DisplayPort-1 --mode 3840x2160 --pos 3840x0 --rotate left
-    bindsym r exec --no-startup-id xrandr --output HDMI-0 --primary --mode 3840x2160 --pos 0x0 --rotate normal --output DP-0 --mode 3840x2160 --pos 3840x0 --rotate normal --output DP-1 --off --output DP-2 --off --output DP-3 --off --output DP-4 --off --output DP-5 --off
-    
+    bindsym e exec --no-startup-id xrandr --output eDP --primary --mode 1920x1200 --pos 0x0 --rotate normal --output DisplayPort-0 --off --output DisplayPort-0 --off --output DisplayPort-1 --off --output DisplayPort-2 --off --output DisplayPort-3 --off --output DisplayPort-4 --off --output DisplayPort-5 --off --output DisplayPort-6 --off
+
+    bindsym d exec --no-startup-id xrandr --output eDP --off --output DisplayPort-0 --primary --mode 3840x2160 --pos 1920x0 --rotate normal --output DisplayPort-0 --off --output DisplayPort-1 --off --output DisplayPort-2 --off --output DisplayPort-3 --off --output DisplayPort-4 --off --output DisplayPort-5 --off --output DisplayPort-6 --off
+   
+    bindsym a exec --no-startup-id xrandr --output eDP --primary --mode 1920x1200 --pos 0x1077 --rotate normal --output DisplayPort-0 --mode 3840x2160 --pos 1920x698 --rotate normal --output DisplayPort-0 --off --output DisplayPort-1 --mode 3840x2160 --pos 5760x0 --rotate left --output DisplayPort-2 --off --output DisplayPort-3 --off --output DisplayPort-4 --off --output DisplayPort-5 --off --output DisplayPort-6 --off
+
+    bindsym r exec --no-startup-id xrandr --output eDP --off --output DisplayPort-0 --primary --mode 3840x2160 --pos 1920x698 --rotate normal --output DisplayPort-0 --off --output DisplayPort-1 --mode 3840x2160 --pos 5760x0 --rotate left --output DisplayPort-2 --off --output DisplayPort-3 --off --output DisplayPort-4 --off --output DisplayPort-5 --off --output DisplayPort-6 --off
+
+
     # back to normal: Enter or Escape
     bindsym Return mode "default"
     bindsym Escape mode "default"
@@ -278,7 +286,7 @@ set_from_resource $white2 color15 #ffffff
 bar {
     status_command i3status --config ~/.config/i3/i3status.conf
     # Disable all tray icons
-    tray_output HDMI-0
+    tray_output primary
     colors {
         background $black2
         statusline $white2
@@ -306,15 +314,16 @@ bindsym Ctrl+Print exec --no-startup-id maim png | xclip -selection clipboard -t
 bindsym Ctrl+$mod+Print exec --no-startup-id maim -i $(xdotool getactivewindow) | xclip -selection clipboard -t image/png
 bindsym Ctrl+Shift+Print exec --no-startup-id maim -s | xclip -selection clipboard -t image/png
 
-exec_always --no-startup-id /usr/bin/feh --bg-fill /home/basan/Documents/wallpapers/karsten-wurth-7BjhtdogU3A-unsplash.jpg /home/basan/Documents/wallpapers/forest-river-misty.jpg 
+exec_always --no-startup-id /usr/bin/feh --bg-fill ~/walls/mountain/wallhaven-o3qol5.jpg ~/walls/mountain/wallhaven-o3qol5.jpg
+
 exec --no-startup-id blueman-applet &
-#exec --no-startup-id pasystray &
-
-
-exec --no-startup-id /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1
-
-# only for ryzen needs to be changed at reinstallation
-exec --no-startup-id pactl set-card-profile alsa_card.pci-0000_0d_00.4 off
 
 # move workspace to other monitor
 bindsym $mod+m move workspace to output left
+
+exec --no-startup-id picom &
+
+gaps inner 4
+gaps outer 1
+
+#exec --no-startup-id pactl set-card-profile

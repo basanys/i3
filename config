@@ -216,17 +216,14 @@ bindsym $mod+BackSpace mode "$mode_system"
 for_window [class="Arandr"] floating enable
 
 
-set $mode_display Config monitor resolution - Elite only (e) - Dell only (d) - Elite+Dell+AOC (a) - Dell+AOC (r)
+set $mode_display Config monitor resolution - All (a) - Thinkpad (t)
 
 mode "$mode_display" {
     # for two external displays on elitebook
-    bindsym e exec --no-startup-id xrandr --output eDP --primary --mode 1920x1200 --pos 0x0 --rotate normal --output DisplayPort-0 --off --output DisplayPort-0 --off --output DisplayPort-1 --off --output DisplayPort-2 --off --output DisplayPort-3 --off --output DisplayPort-4 --off --output DisplayPort-5 --off --output DisplayPort-6 --off
+    
+    bindsym a exec --no-startup-id xrandr --output eDP-1 --primary --mode 1920x1200 --scale 1.5x1.5 --fb 6720x3960 --panning 2880x1800+0+0 --output HDMI-1 --mode 3840x2160 --fb 6720x3960 --panning 3840x2160+2880+0
 
-    bindsym d exec --no-startup-id xrandr --output eDP --off --output DisplayPort-0 --primary --mode 3840x2160 --pos 1920x0 --rotate normal --output DisplayPort-0 --off --output DisplayPort-1 --off --output DisplayPort-2 --off --output DisplayPort-3 --off --output DisplayPort-4 --off --output DisplayPort-5 --off --output DisplayPort-6 --off
-   
-    bindsym a exec --no-startup-id xrandr --output eDP --primary --mode 1920x1200 --pos 0x1077 --rotate normal --output DisplayPort-0 --mode 3840x2160 --pos 1920x698 --rotate normal --output DisplayPort-0 --off --output DisplayPort-1 --mode 3840x2160 --pos 5760x0 --rotate left --output DisplayPort-2 --off --output DisplayPort-3 --off --output DisplayPort-4 --off --output DisplayPort-5 --off --output DisplayPort-6 --off
-
-    bindsym r exec --no-startup-id xrandr --output eDP --off --output DisplayPort-0 --primary --mode 3840x2160 --pos 1920x698 --rotate normal --output DisplayPort-0 --off --output DisplayPort-1 --mode 3840x2160 --pos 5760x0 --rotate left --output DisplayPort-2 --off --output DisplayPort-3 --off --output DisplayPort-4 --off --output DisplayPort-5 --off --output DisplayPort-6 --off
+    bindsym t exec --no-startup-id xrandr --output eDP-1 --primary --mode 1920x1200 --scale 1.5x1.5 --fb 6720x3960 --panning 2880x1800+0+0 --output HDMI-1 --off
 
 
     # back to normal: Enter or Escape
@@ -322,11 +319,12 @@ exec --no-startup-id pasystray &
 # move workspace to other monitor
 bindsym $mod+m move workspace to output left
 
-exec --no-startup-id picom --config ~/.config/picom.conf &
+exec --no-startup-id picom --config ~/.config/picom/picom.conf &
 
-gaps inner 4
+exec_always --no-startup-id /bin/echo 0 | sudo tee /sys/class/leds/platform::micmute/brightness &
+
+gaps inner 10
 gaps outer 1
 
 #exec --no-startup-id pactl set-card-profile
-exec_always --no-startup-id echo 0 | sudo tee /sys/class/leds/platform::micmute/brightness
 

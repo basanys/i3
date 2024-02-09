@@ -221,9 +221,9 @@ set $mode_display Config monitor resolution - All (a) - Thinkpad (t)
 mode "$mode_display" {
     # for two external displays on elitebook
     
-    bindsym a exec --no-startup-id xrandr --output eDP-1 --primary --mode 1920x1200 --scale 1.5x1.5 --fb 6720x3960 --panning 2880x1800+0+0 --output HDMI-1 --mode 3840x2160 --fb 6720x3960 --panning 3840x2160+2880+0
+    bindsym a exec --no-startup-id xrandr --output eDP-1 --primary --mode 1920x1200 --scale 1.5x1.5 --fb 6720x3960 --panning 2880x1800+0+0 --output HDMI-1 --mode 3840x2160 --fb 6720x3960 --panning 3840x2160+2880+0 --scale 0.9999x0.9999
 
-    bindsym t exec --no-startup-id xrandr --output eDP-1 --primary --mode 1920x1200 --scale 1.5x1.5 --fb 6720x3960 --panning 2880x1800+0+0 --output HDMI-1 --off
+    bindsym t exec --no-startup-id xrandr --output eDP-1 --primary --mode 1920x1200 --scale 1.5x1.5 --fb 2880x1800 --panning 2880x1800+0+0 --output HDMI-1 --off
 
     # back to normal: Enter or Escape
     bindsym Return mode "default"
@@ -326,4 +326,4 @@ gaps inner 10
 gaps outer 1
 
 #exec --no-startup-id pactl set-card-profile
-
+exec --no-startup-id xrandr --output eDP-1 --primary --mode 1920x1200 --scale 1.5x1.5 --fb 6720x3960 --panning 2880x1800+0+0 --output HDMI-1 --off
